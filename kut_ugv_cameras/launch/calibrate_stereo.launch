@@ -1,0 +1,20 @@
+<launch>
+    <arg name="size" default="8x6" />
+	<arg name="square" default="0.0735" />
+	<!--
+		## Approximate synchronization time ##
+		With external triggering can be as high as 50us
+	-->
+	<!--arg name="approximate" default="0.000050" /-->
+	<arg name="approximate" default="0.01" />
+	<node pkg="camera_calibration" type="cameracalibrator.py"
+			name="stereo_calibration"
+			ns="stereo_cam"
+			args="--size $(arg size) --square $(arg square) --approximate=$(arg approximate)"
+			output="screen" required="true">
+		<remap from="left" to="left/image_raw" />
+		<remap from="right" to="right/image_raw" />
+		<remap from="left_camera" to="left" />
+		<remap from="right_camera" to="right" />
+	</node>
+</launch>

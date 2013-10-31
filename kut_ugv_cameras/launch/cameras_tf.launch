@@ -1,0 +1,25 @@
+<launch>
+	<!-- NOTE: Stereo camera in ROS should have only
+		 one coordinate frame. According to some comments
+		 on answers.ros.org that frame should be attached
+		 to LEFT camera!
+	-->
+	<!-- displacement from base_link along X-axis -->
+	<arg name="stereo_cam_dx" default="1.96" />
+	<!-- displacement from base_link along Y-axis, see note above -->
+	<arg name="stereo_cam_dy" default="0.15" />
+	<!-- displacement from base_link along Z-axis -->
+	<arg name="stereo_cam_dz" default="0.95" />
+	<!-- Publish interval in ms -->
+	<arg name="tf_publish_interval" default="10" />
+
+	<node name="stereo_cam_tf" pkg="tf" type="static_transform_publisher" required="true" output="screen"
+		args="$(arg stereo_cam_dx) $(arg stereo_cam_dy) $(arg stereo_cam_dz) -1.5708 0 -1.5708 base_link stereo_cam $(arg tf_publish_interval)"/>
+
+	<node name="mono_cam_tf" pkg="tf" type="static_transform_publisher" required="true" output="screen"
+		args="$(arg stereo_cam_dx) 0 $(arg stereo_cam_dz) -1.5708 0 -1.5708 base_link camera_mono $(arg tf_publish_interval)"/>
+
+	<!-- ### Automatic camera pose calibration ### -->
+	<!--include file="$(find kut_ugv_cameras)/launch/calibrate_pose.launch" />
+	<node pkg="camera_pose_toolkits" type="transform_finder_node" name="camera_transform_finder" output="screen" required="true" /-->
+</launch>

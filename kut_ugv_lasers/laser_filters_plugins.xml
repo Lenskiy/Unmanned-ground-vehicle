@@ -1,0 +1,15 @@
+<library path="lib/libroad_filter">
+	<class name="kut_ugv_lasers/StatisticalRoadFilter" type="kut_ugv_lasers::StatisticalFilter"
+		base_class_type="filters::FilterBase<sensor_msgs::PointCloud2>">
+		<description>
+			Filter based on pcl::StatisticalOutlierRemoval.
+			Takes PointXYZIIndex as input and outputs PointXYZI.
+		</description>
+	</class>
+	<class name="kut_ugv_lasers/BypassFilter" type="kut_ugv_lasers::BypassFilter<pcl::PointXYZ>"
+		base_class_type="filters::FilterBase<sensor_msgs::PointCloud2>">
+		<description>
+				Output of the filter is equal to its input
+		</description>
+	</class>
+</library>

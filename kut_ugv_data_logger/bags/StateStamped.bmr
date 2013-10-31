@@ -1,0 +1,58 @@
+class update_kut_ugv_vehicle_State_3a30f76c49411c11ca140f3b0c3f1786(MessageUpdateRule):
+	old_type = "kut_ugv_vehicle/State"
+	old_full_text = """
+float64 velocity
+float64 theta
+float64 beta
+float64 psi
+float64 psi_dot
+float64 x
+float64 y
+float64 x_dot
+float64 y_dot
+float64 radius
+"""
+
+	new_type = "kut_ugv_vehicle/State"
+	new_full_text = """
+float64 velocity
+float64 theta
+float64 beta
+float64 psi
+float64 psi_dot
+float64 x
+float64 y
+float64 x_dot
+float64 y_dot
+float64 radius
+float64 lat_acc
+float64 lon_acc
+float64 yaw_rate
+# normaly closed, i.e. 1 - ok, 0 - fault
+bool emergency
+"""
+
+	order = 0
+	migrated_types = []
+
+	valid = True
+
+	def update(self, old_msg, new_msg):
+		new_msg.velocity = old_msg.velocity
+		new_msg.theta = old_msg.theta
+		new_msg.beta = old_msg.beta
+		new_msg.psi = old_msg.psi
+		new_msg.psi_dot = old_msg.psi_dot
+		new_msg.x = old_msg.x
+		new_msg.y = old_msg.y
+		new_msg.x_dot = old_msg.x_dot
+		new_msg.y_dot = old_msg.y_dot
+		new_msg.radius = old_msg.radius
+		#No matching field name in old message
+		new_msg.lat_acc = 0.
+		#No matching field name in old message
+		new_msg.lon_acc = 0.
+		#No matching field name in old message
+		new_msg.yaw_rate = 0.
+		#No matching field name in old message
+		new_msg.emergency = 1

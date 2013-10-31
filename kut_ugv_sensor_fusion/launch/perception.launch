@@ -1,0 +1,26 @@
+<launch>
+	<arg name="display" value="false" />
+	<arg name="world_object_topic" value="/world_object" />
+	<!-- Perception Nodes-->
+	<include file="$(find kut_ugv_sensor_fusion)/launch/lidar_segmentation.launch">
+		<arg name="verbose" value="$(arg display)"/>
+	</include>
+	<include file="$(find kut_ugv_sensor_fusion)/launch/pedestrian_detector.launch">
+			<arg name="verbose" value="$(arg display)"/>
+			<arg name="world_object_topic" value="$(arg world_object_topic)"/>
+	</include>
+	<!--
+	    <include file="$(find kut_ugv_sensor_fusion)/launch/traffic_light_detector.launch">
+			<arg name="verbose" value="$(arg display)"/>
+			<arg name="world_object_topic" value="$(arg world_object_topic)"/>
+	</include>
+	-->
+<!--	<include file="$(find kut_ugv_sensor_fusion)/launch/moving_object_detector.launch">-->
+<!--			<arg name="verbose" value="$(arg display)"/>-->
+<!--	</include>-->
+<!--	<include file="$(find kut_ugv_sensor_fusion)/launch/traffic_signs_detector.launch"> 
+			<arg name="world_object_topic" value="$(arg world_object_topic)"/>
+	</include>
+-->
+</launch>
+

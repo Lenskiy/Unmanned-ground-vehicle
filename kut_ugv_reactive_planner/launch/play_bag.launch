@@ -1,0 +1,25 @@
+<launch>
+	<param name="/tf_prefix" value="" />
+	<param name="/use_sim_time" value="true" />
+	<node name="playbag" pkg="rosbag" type="play" args="--clock --loop --delay=3 $(find kut_ugv_reactive_planner)/bags/kut_0718_1.bag" required="true" output="screen" />
+
+	<node name="republish" pkg="image_transport" type="republish" args="compressed in:=/camera_firewire/camera/image_raw/compressed raw out:=/camera_firewire/camera/image_raw" required="true" output="screen" />
+
+	<node name="base_to_laser" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /laser 100" />
+	<node name="base_to_camera" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /camera 100" />
+
+	<node name="reactive_planner" pkg="kut_ugv_reactive_planner" type="planner_node" required="true" output="screen">
+		<remap from="heading" to="~/heading" />
+		<remap from="motion_command" to="~/motion_command" />
+		<remap from="scan" to="/lms511/scan" />
+		<param name="publish_rate" value="1000" />
+		<param name="waypoint_file" value="$(find kut_ugv_reactive_planner)/bags/wp_kut_0718_filtered1.txt" />
+		<param name="log_file" value="$(find kut_ugv_reactive_planner)/log_file.txt" />
+		
+	</node>
+
+	 <node name="utm_odometry_node" pkg="gps_common" type="utm_odometry_node" required="true" output="screen">
+		<remap from="fix" to="/gps/fix" />
+		<remap from="odom" to="/gps_xy" />
+	</node>
+</launch>

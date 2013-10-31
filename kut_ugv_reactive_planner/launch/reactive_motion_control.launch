@@ -1,0 +1,27 @@
+<launch>
+        <node name="reactive_planner" pkg="kut_ugv_reactive_planner" type="planner_node" required="true" output="screen">
+                <remap from="heading" to="~/heading" />
+                <remap from="motion_command" to="/vehicle/motion_command" />
+		<remap from="trajectory" to="path_trajectory" />
+		<remap from="planner_velocity" to="planner_speed_limit" />
+		<remap from="objects" to="/bumper_laser/scan/objects" />
+                <remap from="scan" to="/bumper_laser/scan" />
+				<!--remap from="roof_cloud" to="/roof_laser/cloud_filtered" /-->
+				<remap from="roof_cloud" to="/roof_laser/assembled_cloud2" />
+				<!--remap from="bumper_cloud" to="/bumper_laser/cloud_filtered" /-->
+				<remap from="bumper_cloud" to="/bumper_laser/assembled_cloud2" />
+		<remap from="vehicle_state" to="/vehicle/state" />
+		<remap from="velocity_limit" to="/behavior/velocity_limit" />
+                <param name="publish_rate" value="100" />
+                <param name="waypoint_file" value="$(find kut_ugv_reactive_planner)/waypoints/F1/waypoint.txt" />
+		<param name="curvature_file" value="$(find kut_ugv_reactive_planner)/waypoints/F1/curvature.txt" />
+		<param name="velocity_file" value="$(find kut_ugv_reactive_planner)/waypoints/F1/velocity.txt" />
+                <param name="log_file" value="$(find kut_ugv_reactive_planner)/log.txt" />
+		<param name="log_file2" value="$(find kut_ugv_reactive_planner)/log2.txt" />
+        </node>
+
+        <node name="utm_odometry_node" pkg="gps_common" type="utm_odometry_node" required="true" output="screen">
+                <remap from="fix" to="/gps/fix" />
+                <remap from="odom" to="/gps_xy" />
+        </node>
+</launch>

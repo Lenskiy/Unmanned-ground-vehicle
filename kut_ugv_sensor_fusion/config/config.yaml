@@ -1,0 +1,13 @@
+%YAML:1.0  
+# This is a comment   
+max_angle: 1.65806281567
+min_dist: 0.0
+max_dist: 81.0
+grid_size: 0.4
+
+# Car filter params
+car_height: 4.5
+car_width: 2.5
+width_tol: 0.35
+height_tol: 0.90
+

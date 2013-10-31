@@ -1,0 +1,13 @@
+<launch>
+	<arg name="world_object_topic" default="/world_object" />
+	<arg name="verbose" default="true" />
+
+	<node pkg="kut_ugv_sensor_fusion" type="moving_object_detector_node" name="moving_object_detector_node" output="screen" >
+	
+	<param name="output" type="string" value="$(arg world_object_topic)" />
+	<param name="laser_object_topic" type="string" value="/bumper_laser/scan/objects" />
+	<param name="threshold" type="double" value="5.0" />
+	<param name="alpha" type="double" value="0.8" />
+	<param name="display" type="boolean" value="$(arg verbose)" />
+	</node>
+</launch>

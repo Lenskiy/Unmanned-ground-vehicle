@@ -1,0 +1,9 @@
+<launch>
+	<arg name="world_object_topic" default="/world_object" />
+
+	<node pkg="kut_ugv_lane_detector" type="kut_ugv_lane_detector" name="kut_ugv_lane_detector" output="screen">
+
+	<param name="stoplane_conf_url" type="string" value="$(find kut_ugv_lane_detector)/src/Lanes.conf" />
+	<param name="output" type="string" value="$(arg world_object_topic)" />
+	</node>
+</launch>

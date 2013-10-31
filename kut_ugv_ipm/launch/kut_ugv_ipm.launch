@@ -1,0 +1,17 @@
+<launch>
+    <arg name="IPM" default="/ipm" />
+    <arg name="verbose" default="true" />
+    <node pkg="kut_ugv_ipm" type="ipm_node" name="ipm_node" output="screen" >
+           <param name="output"     type="string"   value="$(arg world_object_topic)" />
+           <param name="image"      type="string"   value="/mono_cam/image_rect_color" />
+           <param name="cam_info"   type="string"   value="/mono_cam/camera_info" />
+           <param name="ipmWidth"   type="int"      value="320" />
+           <param name="ipmHeight"  type="int"      value="240" />
+           <param name="ipmLeft"    type="double"   value="20" />
+           <param name="ipmRight"   type="double"   value="620" />
+           <param name="ipmTop"     type="double"   value="240" />
+           <param name="ipmBottom"  type="double"   value="480" />
+           <param name="ipmInterpolation"   type="int"      value="0" />                                   
+           <param name="display" type="boolean" value="$(arg verbose)" />
+    </node>
+</launch>

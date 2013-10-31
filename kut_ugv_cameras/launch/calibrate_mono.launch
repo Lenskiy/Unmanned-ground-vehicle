@@ -1,0 +1,9 @@
+<launch>
+    <arg name="size" default="8x6" />
+	<arg name="square" default="0.0735" />
+	<node pkg="camera_calibration" type="cameracalibrator.py" name="mono_calibration" args="--size $(arg size) --square $(arg square)"
+		ns="mono_cam" output="screen" required="true">
+		<remap from="image" to="image_raw" />
+		<remap from="camera/set_camera_info" to="set_camera_info" />
+	</node>
+</launch>

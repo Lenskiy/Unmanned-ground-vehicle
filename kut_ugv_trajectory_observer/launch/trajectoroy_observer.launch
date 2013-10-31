@@ -1,0 +1,18 @@
+<launch>
+        <node name="trajectory_observer" pkg="kut_ugv_trajectory_observer" type="trajectory_observer" required="true" output="screen">
+                <remap from="heading" to="~/heading" />
+                <remap from="motion_command" to="/vehicle/motion_command" />
+		<remap from="vehicle_state" to="/vehicle/state" />
+                <param name="publish_rate" value="100" />
+                <param name="waypoint_file" value="$(find kut_ugv_trajectory_observer)/waypoints/F1/waypoint.txt" />
+		<param name="curvature_file" value="$(find kut_ugv_trajectory_observer)/waypoints/F1/curvature.txt" />
+		<param name="velocity_file" value="$(find kut_ugv_trajectory_observer)/waypoints/F1/velocity.txt" />
+                <param name="log_file" value="$(find kut_ugv_trajectory_observer)/log.txt" />
+		<param name="log_file2" value="$(find kut_ugv_trajectory_observer)/log2.txt" />
+        </node>
+
+        <node name="utm_odometry_node2" pkg="gps_common" type="utm_odometry_node" required="true" output="screen">
+                <remap from="fix" to="/gps/fix" />
+                <remap from="odom" to="/gps_xy" />
+        </node>
+</launch>

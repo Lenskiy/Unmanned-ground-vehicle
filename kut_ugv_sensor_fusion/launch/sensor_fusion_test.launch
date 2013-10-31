@@ -1,0 +1,7 @@
+<launch>
+<!--  <include file="$(find camera_c920)/launch/camera.launch" />-->
+  <include file="$(find camera_firewire)/launch/camera.launch" />
+<!--  <include file="$(find sicktoolbox_wrapper2)/launch/sick_launcher.launch" />-->
+  <include file="$(find sicktoolbox_wrapper2)/launch/sick_511_launcher.launch" />  
+  <include file="$(find kut_ugv_sensor_fusion)/launch/sensor_fusion.launch" />  
+</launch>

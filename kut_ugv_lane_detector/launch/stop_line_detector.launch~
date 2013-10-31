@@ -1,0 +1,9 @@
+<launch>
+	<arg name="world_object_topic" default="/world_object" />
+
+	<node pkg="kut_ugv_lane_detector" type="kut_ugv_lane_detectorr" name="kut_ugv_lane_detector" output="screen" >
+	
+	
+	<param name="output" type="string" value="$(arg world_object_topic)" />
+	</node>
+</launch>

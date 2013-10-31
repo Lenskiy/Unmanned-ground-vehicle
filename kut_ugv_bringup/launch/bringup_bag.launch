@@ -1,0 +1,43 @@
+<launch>
+	<!-- Bag filename relative to package://kut_ugv_data_logger/bags/ -->
+	<arg name="prefix" default="$(find kut_ugv_data_logger)/bags" />
+	<arg name="bag_file" />
+	<arg name="cmd_line" default="--pause" />
+
+	<env name="ROSCONSOLE_CONFIG_FILE" value="$(find kut_ugv_bringup)/config/logging.conf"/>
+	<!-- Play bag file -->
+	<include file="$(find kut_ugv_data_logger)/launch/play.launch">
+		<arg name="prefix" value="$(arg prefix)" />
+		<arg name="bag_file" value="$(arg bag_file)" />
+		<arg name="cmd_line" value="$(arg cmd_line)" />
+	</include>
+
+	<!-- Communication with CompactRIO -->
+	<!-- ## played by rosbag -->
+
+	<!-- Localization -->
+	<!--include file="$(find kut_ugv_localization)/launch/gps_ekf.launch">
+		<arg name="relative_gps" value="true" />
+	</include-->
+
+	<!-- GPS -->
+	<!-- ## played by rosbag -->
+
+	<!-- Lasers  -->
+	<!-- ## played by rosbag -->
+	<!-- laser filters -->
+	<include file="$(find kut_ugv_lasers)/launch/filters.launch" />
+
+	<!-- Processing nodeletes for image rectification, disparity and point clouds -->
+	<include file="$(find kut_ugv_cameras)/launch/proc_nodelets.launch" />
+	
+	<!-- Reactive planner -->
+	<!--include file="$(find kut_ugv_reactive_planner)/launch/reactive_motion_control.launch" /-->
+
+	<!-- Perception -->
+	<include file="$(find kut_ugv_sensor_fusion)/launch/perception.launch" />
+	<!-- <include file="$(find kut_ugv_lane_detector)/launch/kut_ugv_lane_detector.launch" /> -->
+
+	<!-- RViz -->
+	<!-- <include file="$(find kut_ugv_bringup)/launch/rviz.launch" /> -->
+</launch>

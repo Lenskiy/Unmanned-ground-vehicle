@@ -1,0 +1,19 @@
+<launch>
+	<!-- gps_link displacement from base_link along X-axis -->
+	<arg name="gps_link_dx" default="0.0" />
+	<!-- gps_link displacement from base_link along Z-axis -->
+	<arg name="gps_link_dz" default="1.37" />
+	<!-- Publish interval in ms -->
+	<arg name="tf_publish_interval" default="10" />
+
+	<group ns="gps">
+		<node pkg="gpsd_client" type="gpsd_client" name="gps" output="screen" required="true">
+			<param name="use_gps_time" type="bool" value="false" />
+		</node>
+	</group>
+
+	<!-- ### Coordinate frames ### -->
+	<node name="gps_link_tf" pkg="tf" type="static_transform_publisher" required="true" output="screen"
+		args="$(arg gps_link_dx) 0 $(arg gps_link_dz) 0 0 0 base_link gps_link $(arg tf_publish_interval)" />
+
+</launch>

@@ -1,0 +1,10 @@
+scan_filter_chain:
+- name: range_filter
+  type: laser_filters/LaserScanRangeFilter
+cloud_filter_chain:
+- name: bypass_filter
+  type: kut_ugv_lasers/BypassFilter
+
+target_frame: /odom
+
+high_fidelity: true

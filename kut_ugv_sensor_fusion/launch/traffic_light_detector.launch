@@ -1,0 +1,17 @@
+<launch>
+	<arg name="world_object_topic" default="/world_object" />
+	<arg name="verbose" default="true" />
+	
+	<node pkg="kut_ugv_sensor_fusion" type="traffic_light_detector_node" name="traffic_light_detector_node" output="screen" >
+	
+	<param name="output" type="string" value="$(arg world_object_topic)" />
+	<param name="camera_topic" type="string" value="/mono_cam/image_rect_color" />
+	<param name="laser_objects_topic" type="string" value="/bumper_laser/scan/objects" />
+	<param name="svm_model_url" type="string" value="$(find kut_ugv_sensor_fusion)/calib/traffic_light_model.yaml" />
+	<param name="calibration_url" type="string" value="$(find kut_ugv_sensor_fusion)/calib/calib.yaml" />
+	<param name="arrow_template" type="string" value="$(find kut_ugv_sensor_fusion)/config/templates/arrow_template.png" />
+	<param name="sky_frac" type="double" value="0.0" />
+	<param name="ground_fac" type="double" value="0.6" />
+	<param name="display" type="boolean" value="$(arg verbose)" />
+	</node>
+</launch>

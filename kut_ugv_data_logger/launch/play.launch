@@ -1,0 +1,20 @@
+<launch>
+	<arg name="prefix" />
+	<arg name="bag_file" />
+	<arg name="cmd_line" default="" />
+	<arg name="delay" default="2"/>
+	<param name="use_sim_time" value="true" />
+	<node name="play_bag" pkg="rosbag" type="play" output="screen" required="true"
+		args="$(arg prefix)/$(arg bag_file) --delay $(arg delay) --clock --loop $(arg cmd_line)" />
+
+	<!-- ### Republish video streams ### -->
+	<!-- Left camera -->
+	<node name="republish_stereo_left" pkg="image_transport" type="republish" output="screen" required="true"
+		args="compressed in:=/stereo_cam/left/image_raw raw out:=/stereo_cam/left/image_raw" />
+	<!-- Right camera -->
+	<node name="republish_stereo_right" pkg="image_transport" type="republish" output="screen" required="true"
+		args="compressed in:=/stereo_cam/right/image_raw raw out:=/stereo_cam/right/image_raw" />
+	<!-- Mono camera -->
+	<node name="republish_stereo_mono" pkg="image_transport" type="republish" output="screen" required="true"
+		args="compressed in:=/mono_cam/image_raw raw out:=/mono_cam/image_raw" />
+</launch>

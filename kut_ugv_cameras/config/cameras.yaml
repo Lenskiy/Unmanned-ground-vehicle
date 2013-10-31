@@ -1,0 +1,79 @@
+# Camera model: Imaging Source DFx 21BF618.H
+# (All three cameras are same)
+
+# Possible values to control states
+#   0 - Off: Use fixed value
+#   1 - Query: Query current values
+#   2 - Auto: Camera sets continuously
+#   3 - Manual: Use explicit value
+#   4 - OnePush: Camera sets once
+#   5 - None: Feature not available
+
+default: &default
+  # Color mode
+  video_mode: 640x480_yuv422
+  # According to Sony ICX618AQA specs
+  bayer_pattern: gbrg
+  # Bandwidth of the FireWire bus
+  iso_speed: 400
+  # FPS
+  frame_rate: 30
+
+  external_trigger: false #true
+  trigger_mode: mode_0
+  trigger_source: source_0
+  trigger_polarity: active_high
+ 
+  ## Default all exposure parameters to manual control 
+  
+  # Exposure time is ignored when shutter and gain are
+  # set manually
+  auto_exposure: 3
+  exposure: 1200
+
+  # Shutter time of 1/568 is the maximum value
+  # that allows 30 FPS
+  auto_shutter: 2 #3
+  shutter: 568
+
+  # The gain should be adjusted in run-time
+  auto_gain: 2
+  gain: 800
+
+# Monocular camera
+mono_cam:
+  <<: *default
+
+  external_trigger: false
+
+  # Control parameters automatically
+  auto_exposure: 3
+  exposure: 1200
+
+  auto_shutter: 2
+  shutter: 800
+
+  auto_gain: 2
+  gain: 180
+  
+  guid: 0007481201dab408
+  frame_id: camera_mono
+  camera_info_url: package://kut_ugv_calibration_data/config/mono_calib.yaml
+
+# Stereo pair
+stereo_cam:
+  left:
+    <<: *default
+
+    guid: 0007481201dab407
+    #frame_id: camera_left
+    frame_id: stereo_cam
+    camera_info_url: package://kut_ugv_calibration_data/config/left_calib.yaml
+
+  right:
+    <<: *default
+
+    guid: 00074812019dac5f
+    #frame_id: camera_right
+    frame_id: stereo_cam
+    camera_info_url: package://kut_ugv_calibration_data/config/right_calib.yaml

@@ -1,0 +1,13 @@
+scan_filter_chain:
+- name: range_filter
+  type: laser_filters/LaserScanRangeFilter
+cloud_filter_chain:
+- name: road_filter
+  type: kut_ugv_lasers/StatisticalRoadFilter
+  params:
+    road_threshold: 0.30
+    mean_k: 1
+    stddev: 10.0
+
+target_frame: /odom
+high_fidelity: true

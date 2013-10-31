@@ -1,0 +1,31 @@
+<launch>
+	<node name="behavior_planner" pkg="kut_ugv_behavior_planner" type="behavior_planner" output="screen" required="true">
+		<!-- if distance between objects is smaller than threshold, then it is a same object -->
+		<param name="distance_threshold" value="3.0" />
+		<!-- all objects coordinates will be transformed to this frame -->
+		<param name="fixed_frame" value="/odom" />
+
+		<param name="bumper_to_odom_dist" value="3.54" />
+		<!-- Velocity in speed limit zone, m/s -->
+		<param name="low_velocity" value="5.6" />
+
+		<!-- Timeouts, s -->
+		<param name="traffic_light_timeout" value="40.0" />
+		<param name="pedestrian_timeout" value="40.0" />
+		<param name="vehicle_timeout" value="40.0" />
+
+		<!-- Distances, m -->
+		<param name="speed_limit_distance_min" value="10.0" />
+		<param name="speed_limit_distance_max" value="300.0" />
+		<param name="stopline_to_traffic_light" value="15.0" />
+		<param name="stop_to_pedestrian" value="5.0" />
+		<param name="pedestrian_travel_dist" value="10.0" />
+		<param name="vehicle_travel_dist" value="60.0" />
+
+		<!-- Topics -->
+		<!--remap from="world_object" to="/world_object" /-->
+		<remap from="state" to="/vehicle/state" />
+		<remap from="odom" to="/ekf_odom" />
+		<!--remap from="action" to="/action" /-->
+	</node>
+</launch>

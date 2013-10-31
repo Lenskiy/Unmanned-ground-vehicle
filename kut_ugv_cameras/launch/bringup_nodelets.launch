@@ -1,0 +1,25 @@
+<launch>
+	<arg name="manager" default="camera_nodelet_manager" />
+	<arg name="manager_ns" value="/$(arg manager)" />
+
+	<include file="$(find kut_ugv_cameras)/launch/proc_nodelets.launch">
+		<arg name="manager" value="$(arg manager)" />
+	</include>
+
+	<rosparam command="load" file="$(find kut_ugv_cameras)/config/cameras.yaml" />
+	<group ns="stereo_cam">
+		<!-- camera driver nodelets -->
+		<node name="left" pkg="nodelet" type="nodelet" args="load camera1394/driver $(arg manager_ns)" output="screen" required="true">
+			<remap from="camera" to="left" />
+		</node>
+		<node name="right" pkg="nodelet" type="nodelet" args="load camera1394/driver $(arg manager_ns)" output="screen" required="true">
+			<remap from="camera" to="right" />
+		</node>
+	</group>
+
+	<node name="mono_cam" pkg="nodelet" type="nodelet" args="load camera1394/driver $(arg manager_ns)" output="screen" required="true">
+		<remap from="camera" to="~" />
+	</node>
+
+	<include file="$(find kut_ugv_cameras)/launch/cameras_tf.launch" />
+</launch>

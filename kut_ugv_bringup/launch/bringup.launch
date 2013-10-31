@@ -1,0 +1,40 @@
+<launch>
+	<!--
+	<!-- Communication with CompactRIO -->
+	<include file="$(find kut_ugv_vehicle)/launch/crio.launch" />
+    -->
+    
+	<!-- Localization -->
+	<!--
+	<include file="$(find kut_ugv_localization)/launch/gps_ekf.launch">
+		<arg name="relative_gps" value="false" />
+	</include>
+    -->
+    
+	<!--
+	<!-- GPS -->
+	<include file="$(find kut_ugv_gps)/launch/bringup.launch" />
+    -->
+    
+	<!-- Lasers  -->
+	<include file="$(find kut_ugv_lasers)/launch/bringup.launch" />
+
+	<!-- Nodeletes for 1394 cameras, image rectification, disparity and point clouds -->
+	<include file="$(find kut_ugv_cameras)/launch/bringup_nodelets.launch" />
+	
+	<!--
+	<!-- Reactive planner -->
+	<!--include file="$(find kut_ugv_reactive_planner)/launch/reactive_motion_control.launch" /-->
+	-->
+	
+	<!-- Perception -->
+	<include file="$(find kut_ugv_sensor_fusion)/launch/perception.launch"/>
+	<!--
+	<include file="$(find kut_ugv_lane_detector)/launch/kut_ugv_lane_detector.launch"/>
+    -->
+    
+	<!-- RViz -->
+	<!--
+	<include file="$(find kut_ugv_bringup)/launch/rviz.launch" />
+    -->
+</launch>

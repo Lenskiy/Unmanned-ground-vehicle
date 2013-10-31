@@ -1,0 +1,13 @@
+uint32[] idxs
+float32 min_x
+float32 max_x
+float32 min_y
+float32 max_y
+uint32 min_x_idx
+uint32 max_x_idx
+uint32 min_y_idx
+uint32 max_y_idx
+float32 width
+float32 height
+geometry_msgs/Point centroid
+uint32 label

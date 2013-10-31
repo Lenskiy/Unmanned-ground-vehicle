@@ -1,0 +1,35 @@
+<launch>
+	<rosparam command="load" file="$(find kut_ugv_cameras)/config/cameras.yaml" />
+	<group ns="stereo_cam">
+		<node name="left" type="camera1394_node" pkg="camera1394" output="screen" required="true">
+			<remap from="camera" to="left" />
+		</node>
+		<node name="right" type="camera1394_node" pkg="camera1394"  output="screen" required="true">
+			<remap from="camera" to="right" />
+		</node>
+	</group>
+
+	<!-- ### Visual odometry ### -->
+	<node name="viso_node" pkg="viso2_ros" type="stereo_odometer" output="screen">
+		<param name="publish_tf" value="true" />
+		<param name="sensor_frame_id" value="stereo_cam" />
+		<param name="approximate_sync" value="true" />
+		<param name="queue_size" value="10" />
+		<param name="match_disp_tolerance" value="2" />
+
+		<remap from="stereo" to="stereo_cam" />
+		<remap from="image" to="image_rect_color" />
+	</node>
+
+	<node name="mono_cam" type="camera1394_node" pkg="camera1394" output="screen" required="true">
+		<remap from="camera" to="~" />
+	</node>
+
+	<!-- Rectify images and generate point cloud, disparity map etc. -->
+	<node ns="stereo_cam" name="stereo_image_proc" type="stereo_image_proc" pkg="stereo_image_proc" output="screen" required="true">
+		<param name="approximate_sync" value="true" />
+	</node>
+	<node ns="mono_cam" name="mono_image_proc" type="image_proc" pkg="image_proc" output="screen" required="true" />
+
+	<include file="$(find kut_ugv_cameras)/launch/cameras_tf.launch" />
+</launch>

@@ -1,0 +1,365 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1/Tree1
+        - /Lasers1
+      Splitter Ratio: 0.586957
+    Tree Height: 428
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: Left
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 20
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz/TF
+      Enabled: false
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/Camera
+          Enabled: true
+          Image Rendering: background and overlay
+          Image Topic: /stereo_cam/left/image_rect_color
+          Name: Left
+          Overlay Alpha: 0.5
+          Queue Size: 2
+          Transport Hint: raw
+          Value: true
+          Visibility:
+            Cameras:
+              Mono: true
+              Right: true
+              Value: true
+            Grid: true
+            Lasers:
+              Bumper Laser: true
+              Bumper Laser Cloud: true
+              Roof Laser: true
+              Roof Laser Cloud: true
+              Value: true
+            Odometry:
+              EKF Odometry: true
+              GPS Odometry: true
+              Value: true
+              Wheel Odometry: true
+            TF: true
+            Value: true
+          Zoom Factor: 1
+        - Class: rviz/Camera
+          Enabled: true
+          Image Rendering: background
+          Image Topic: /mono_cam/image_rect_color
+          Name: Mono
+          Overlay Alpha: 0.9
+          Queue Size: 2
+          Transport Hint: raw
+          Value: true
+          Visibility:
+            Cameras:
+              Left: true
+              Right: true
+              Value: true
+            Grid: true
+            Lasers:
+              Bumper Laser: true
+              Bumper Laser Cloud: true
+              Roof Laser: true
+              Roof Laser Cloud: true
+              Value: true
+            Odometry:
+              EKF Odometry: true
+              GPS Odometry: true
+              Value: true
+              Wheel Odometry: true
+            TF: true
+            Value: true
+          Zoom Factor: 1
+        - Class: rviz/Camera
+          Enabled: true
+          Image Rendering: background and overlay
+          Image Topic: /stereo_cam/right/image_rect_color
+          Name: Right
+          Overlay Alpha: 0.5
+          Queue Size: 2
+          Transport Hint: raw
+          Value: true
+          Visibility:
+            Cameras:
+              Left: true
+              Mono: true
+              Value: true
+            Grid: true
+            Lasers:
+              Bumper Laser: true
+              Bumper Laser Cloud: true
+              Roof Laser: true
+              Roof Laser Cloud: true
+              Value: true
+            Odometry:
+              EKF Odometry: true
+              GPS Odometry: true
+              Value: true
+              Wheel Odometry: true
+            TF: true
+            Value: true
+          Zoom Factor: 1
+      Enabled: true
+      Name: Cameras
+    - Class: rviz/Group
+      Displays:
+        - Angle Tolerance: 1
+          Class: rviz/Odometry
+          Color: 255; 0; 0
+          Enabled: false
+          Keep: 100000
+          Length: 5
+          Name: Wheel Odometry
+          Position Tolerance: 1
+          Topic: /vehicle/odom
+          Value: false
+        - Angle Tolerance: 0.1
+          Class: rviz/Odometry
+          Color: 255; 255; 0
+          Enabled: false
+          Keep: 100000
+          Length: 3
+          Name: GPS Odometry
+          Position Tolerance: 0.1
+          Topic: /gps/odom
+          Value: false
+        - Angle Tolerance: 0.1
+          Class: rviz/Odometry
+          Color: 255; 0; 255
+          Enabled: true
+          Keep: 100000
+          Length: 3.66
+          Name: EKF Odometry
+          Position Tolerance: 0.1
+          Topic: /ekf_odom
+          Value: true
+      Enabled: true
+      Name: Odometry
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 0
+            Min Value: 0
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/LaserScan
+          Color: 0; 255; 0
+          Color Transformer: FlatColor
+          Decay Time: 0
+          Enabled: false
+          Max Color: 0; 0; 0
+          Max Intensity: 4096
+          Min Color: 255; 255; 255
+          Min Intensity: 0
+          Name: Bumper Laser
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.1
+          Style: Flat Squares
+          Topic: /bumper_laser/scan
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: true
+          Max Color: 255; 255; 255
+          Max Intensity: 4096
+          Min Color: 0; 0; 0
+          Min Intensity: 0
+          Name: Bumper Laser Cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.1
+          Style: Flat Squares
+          Topic: /bumper_laser/cloud_filtered
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/LaserScan
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 10
+          Enabled: false
+          Max Color: 255; 255; 255
+          Max Intensity: 51
+          Min Color: 0; 0; 0
+          Min Intensity: 34
+          Name: Roof Laser
+          Position Transformer: XYZ
+          Queue Size: 1000
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.05
+          Style: Flat Squares
+          Topic: /roof_laser/scan
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 0; 170; 127
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: true
+          Max Color: 255; 255; 255
+          Max Intensity: 123
+          Min Color: 0; 0; 0
+          Min Intensity: 7
+          Name: Roof Laser Cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.1
+          Style: Flat Squares
+          Topic: /roof_laser/assembled_cloud2
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+      Enabled: true
+      Name: Lasers
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: /odom
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/XYOrbit
+      Distance: 10.0038
+      Focal Point:
+        X: -0.468054
+        Y: -0.461739
+        Z: 0
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.236485
+      Target Frame: /base_footprint
+      Value: XYOrbit (rviz)
+      Yaw: 5.86955
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: true
+  Height: 1176
+  Hide Left Dock: true
+  Hide Right Dock: true
+  Left:
+    collapsed: false
+  Mono:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000020c00000279fc0200000007fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df000001850000021bfb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007300000001f800000279000000ee00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000018600000279fc0200000004fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e00000001f8000001130000006c00fffffffb0000000a00560069006500770073000000031100000160000000ca00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000780000001cafc0100000004fb00000008004c0065006600740100000000000001620000005d00fffffffb00000008004d006f006e006f01000001680000049f0000006d00fffffffb0000000a00520069006700680074010000060d000001730000006a00fffffffb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004330000004cfc0100000002fb0000000800540069006d00650000000000000004330000043300fffffffb0000000800540069006d00650100000000000004500000000000000000000007800000027900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Right:
+    collapsed: false
+  Selection:
+    collapsed: true
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 1920
+  Y: 24

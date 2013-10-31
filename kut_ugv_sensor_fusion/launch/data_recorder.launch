@@ -1,0 +1,12 @@
+<launch>
+<!--  <include file="$(find camera_c920)/launch/camera.launch" />-->
+<!--  <include file="$(find sicktoolbox_wrapper2)/launch/sick_launcher.launch" />-->
+<!--  <include file="$(find sicktoolbox_wrapper2)/launch/sick_511_launcher.launch" />  -->
+	<arg name="output" /> 
+	<node pkg="kut_ugv_sensor_fusion" type="data_recorder_node" name="data_recorder_node" output="screen" >
+<!--	<param name="laser_topic" type="string" value="/lms291/scan" />-->
+	<param name="laser_topic" type="string" value="/bumper_laser/scan" />
+	<param name="camera_topic" type="string" value="/mono_cam/image_rect_color" />
+	<param name="output" type="string" value="$(find kut_ugv_sensor_fusion)/$(arg output)" />
+	</node>
+</launch>

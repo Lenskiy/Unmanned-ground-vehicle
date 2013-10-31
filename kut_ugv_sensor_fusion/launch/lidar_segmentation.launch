@@ -1,0 +1,12 @@
+<launch>
+
+	<arg name="verbose" default="true" />
+
+	<node pkg="kut_ugv_sensor_fusion" type="lidar_segmentation_node" name="lidar_segmentation" output="screen" >
+<!--	<param name="laser_topic" type="string" value="/lms291/scan" />-->
+	<param name="laser_topic" type="string" value="/bumper_laser/scan" />
+	<param name="camera_topic" type="string" value="/mono_cam/image_rect_color" />
+	<param name="grid_size" type="double" value="1.2" />
+	<param name="display" type="boolean" value="$(arg verbose)" />
+	</node>
+</launch>

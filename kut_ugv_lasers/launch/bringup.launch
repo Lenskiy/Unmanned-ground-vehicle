@@ -1,0 +1,35 @@
+<launch>
+	<!-- bumper_laser displacement from base_link along X-axis -->
+	<arg name="bumper_laser_dx" default="3.66" />
+	<arg name="roof_laser_dx" default="1.47" />
+	<!-- bumper_laser displacement from base_link along Z-axis -->
+	<!-- it is actualy -0.005, but that is negligible -->
+	<arg name="bumper_laser_dz" default="0.0" />
+	<arg name="roof_laser_dz" default="1.45" />
+	
+	<arg name="bumper_laser_Y" default="0.03" />
+	<arg name="roof_laser_P" default="0.192" />
+	<!-- Publish interval in ms -->
+	<arg name="tf_publish_interval" default="10" />
+
+	<group ns="bumper_laser">
+		<node name="sick_511" pkg="sicktoolbox_wrapper2" type="sicklms_5xx" required="true" output="screen">
+			<param name="ip" type="string" value="192.168.3.80" />
+			<param name="frame_id" value="/bumper_laser" />
+		</node>
+		<node name="static_tf" pkg="tf" type="static_transform_publisher" required="true" output="screen"
+			args="$(arg bumper_laser_dx) 0 $(arg bumper_laser_dz) $(arg bumper_laser_Y) 0 0 base_link bumper_laser $(arg tf_publish_interval)" />
+	</group>
+
+	<group ns="roof_laser">
+		<node name="roof_laser" pkg="sicktoolbox_wrapper2" type="sicklms_2xx" required="true" output="screen">
+			<param name="port" value="/dev/lms291" />
+			<param name="baud" value="500000" />
+			<param name="frame_id" value="/roof_laser" />
+		</node>
+		<node name="static_tf" pkg="tf" type="static_transform_publisher" required="true" output="screen"
+			args="$(arg roof_laser_dx) 0 $(arg roof_laser_dz) 0 $(arg roof_laser_P) 0 base_link roof_laser $(arg tf_publish_interval)" />
+	</group>
+
+	<include file="$(find kut_ugv_lasers)/launch/filters.launch" />
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+	<node pkg="kut_ugv_sensor_fusion" type="sensor_fusion_node" name="sensor_fusion_node" output="screen" >
+<!--	<param name="laser_topic" type="string" value="/lms291/scan" />-->
+	<param name="laser_topic" type="string" value="/bumper_laser/scan" />
+<!--	<param name="camera_topic" type="string" value="/logitech_c920/image_raw" />-->
+	<param name="camera_topic" type="string" value="/mono_cam/image_rect_color" />
+	<param name="calibration_url" type="string" value="$(find kut_ugv_sensor_fusion)/calib/calib.yaml" />
+	<param name="svm_model_url" type="string" value="$(find kut_ugv_sensor_fusion)/calib/svm_model.yaml" />
+	</node>
+</launch>

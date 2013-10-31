@@ -1,0 +1,14 @@
+<launch>
+	<include file="$(find camera_pose_calibration)/blocks/calibration_tf_publisher.launch">
+		<arg name="cache_file" value="/tmp/camera_pose_calibration_cache.bag" />
+	</include>
+	<include file="$(find camera_pose_calibration)/launch_extrinsics/calibrate_3_camera.launch">
+		<arg name="camera1_ns" value="/stereo_cam/left" />
+		<arg name="camera2_ns" value="/stereo_cam/right" />
+		<arg name="camera3_ns" value="/mono_cam" />
+		<arg name="checker_cols" value="8" />
+		<arg name="checker_rows" value="6" />
+		<arg name="checker_size" value="0.02435" />
+		<!--arg name="checker_size" value="0.108" /-->
+	</include>
+</launch>

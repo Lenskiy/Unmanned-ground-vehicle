@@ -1,0 +1,7 @@
+<launch>
+	<node pkg="kut_ugv_sensor_fusion" type="chess_calibration_data_colection_node" name="chess_calibration_data_colection_node" output="screen" >
+	<param name="laser_topic" type="string" value="/bumper_laser/scan" />
+	<param name="camera_topic" type="string" value="/mono_cam/image_rect_color" />
+	<param name="output" type="string" value="$(find kut_ugv_sensor_fusion)/data/$(arg output)" />
+	</node>
+</launch>

@@ -1,0 +1,19 @@
+<launch>
+	<arg name="manager" default="camera_nodelet_manager" />
+	<arg name="manager_ns" value="/$(arg manager)" />
+
+	<!-- nodelet manager process -->
+	<node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen" required="true" />
+	<group ns="stereo_cam">
+		<include file="$(find stereo_image_proc)/launch/stereo_image_proc.launch">
+			<arg name="manager" value="$(arg manager_ns)" />
+		</include>
+		<param name="point_cloud/approximate_sync" value="true" />
+		<param name="point_cloud2/approximate_sync" value="true" />
+		<rosparam command="load" file="$(find kut_ugv_cameras)/config/stereo_proc.yaml" />
+	</group>
+
+	<include ns="mono_cam" file="$(find image_proc)/launch/image_proc.launch">
+		<arg name="manager" value="$(arg manager_ns)" />
+	</include>
+</launch>

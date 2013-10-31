@@ -1,0 +1,4 @@
+# Ignore bag files
+# ROS bag-files are heavy and we do not want them in repository
+
+*.bag

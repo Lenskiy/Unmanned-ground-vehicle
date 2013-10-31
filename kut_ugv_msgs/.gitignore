@@ -1,0 +1,25 @@
+# Build directories
+bin/
+build/
+msg_gen/
+
+src/kut_ugv_msgs
+
+catkin/
+catkin_generated/
+cmake_install.cmake
+devel/
+gtest/
+
+# Eclipse project files
+.cproject
+.pydevproject
+.project
+
+CATKIN_IGNORE
+
+
+# Backup files (e.g. gedit backup files)
+*~
+*.swp
+*.orig

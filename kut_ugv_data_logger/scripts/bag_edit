@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+import roslib
+roslib.load_manifest('kut_ugv_data_logger')
+
+import sys
+import math
+import rosbag
+import tf
+import geometry_msgs as gm
+import numpy
+import tf.transformations as t
+import tf_conversions.posemath as pm
+import PyKDL as kdl
+
+def edit_bag(cfg):
+    with rosbag.Bag(cfg[2], 'w') as outbag:
+        for topic, msg, t in rosbag.Bag(cfg[1]).read_messages():
+            if topic == "/tf":
+                if msg.transforms[0].header.frame_id == cfg[3] \
+                   and msg.transforms[0].child_frame_id == cfg[4]:
+                    # x y z
+                    msg.transforms[0].transform.translation = gm.msg.Vector3(float(cfg[5]), float(cfg[6]), float(cfg[7]))
+                    if len(cfg) == 11:
+                        # r p y
+	                f = kdl.Frame(kdl.Rotation.RPY(float(cfg[10]), float(cfg[9]), float(cfg[8])))
+                        msg.transforms[0].transform.rotation = gm.msg.Quaternion(f.M.GetQuaternion()[0], f.M.GetQuaternion()[1], f.M.GetQuaternion()[2], f.M.GetQuaternion()[3])
+            outbag.write(topic, msg, t)
+        outbag.close()
+
+if __name__ == '__main__':
+    cfg = sys.argv
+
+    if len(cfg) == 8 or len(cfg) == 11:
+        try:
+            edit_bag(cfg)
+        except KeyboardInterrupt:
+            print ''
+    else:
+        print 'Usage: bag_edit <input_bag> <output_bag> <frame_id> <child_frame_id> x y z [Y P R]'
+

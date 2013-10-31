@@ -1,0 +1,11 @@
+disparity:
+  approximate_sync: true
+  correlation_window_size: 21
+  disparity_range: 48
+  min_disparity: 0
+  prefilter_cap: 27
+  prefilter_size: 107
+  speckle_range: 19
+  speckle_size: 395
+  texture_threshold: 2674
+  uniqueness_ratio: 2.0

@@ -1,0 +1,14 @@
+# KIA Sorento 2012
+kinematics:
+  # frame associated with projection of c.g.
+  frame_id: base_footprint
+  # wheelbase length
+  wheelbase: 2.7
+  # track width
+  track: 1.626
+  # c.g. position - displacement from front wheels
+  rotation_center: 1.35
+  # minimum turn radius (outer, curb-to-curb)
+  minimum_radius_outer: 5.456
+  # steering wheel to wheel rotation ratio
+  steering_ratio: 15.9
